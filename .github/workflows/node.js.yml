@@ -3,6 +3,9 @@
 
 name: Node.js CI
 
+env:
+  DEPLOY_ID: ${{ github.run_id }}-${{ github.run_number }}
+  
 on:
   push:
     branches: [ "main" ]
@@ -40,19 +43,11 @@ jobs:
     - name: Deploy AWS EBS Application
       uses: betterchalk/ebs-deploy@v1
       with:
-        # EBS app name (e.g. myapp)
-        ebs-app-name: 
-        # EBS environment name (e.g. myapp-env)
-        ebs-environment-name: 
-        # Name of S3 bucket to store app package (e.g. myapp-bucket)
-        s3-bucket: 
-        # File name for app when stored in S3 (e.g. myapp-v0.1.0.zip)
-        s3-key: 
-        # AWS region for the EBS app (e.g. us-east-2)
-        aws-region: 
-        # The location of the bundled app file (e.g. ./myapp.zip)
-        file-path: 
-        # Unique string to use as app version label (e.g. myapp-v0.1.0)
-        version-label: 
-        # Max duration to wait for AWS to pre-process and validate the environment manifest (env.yaml) and configuration files (*.config files in the .ebextensions folder) in the source bundle (if any). Value is in seconds (e.g. 300 - which means 5mins)
-        process-timeout: # optional, default is 300
+        ebs-app-name: ta123-api
+        ebs-environment-name: Ta123api-env
+        s3-bucket: elasticbeanstalk-us-east-1-371837554631
+        s3-key: deploy.zip
+        aws-region: us-east-1
+        file-path: ./deploy.zip
+        version-label: ${{ env.DEPLOY_ID }}
+        process-timeout: 300
