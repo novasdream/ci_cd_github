@@ -30,7 +30,7 @@ jobs:
       env:
         AWS_S3_BUCKET: 'ta123-webapp'
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACEESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}   # optional: defaults to us-east-1
         SOURCE_DIR: 'html'      # optional: defaults to entire repository
     
